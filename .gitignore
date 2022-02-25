@@ -60,3 +60,6 @@ crashlytics-build.properties
 
 # JetBrains Rider
 .idea/
+
+# Unity User Settings
+UserSettings/
