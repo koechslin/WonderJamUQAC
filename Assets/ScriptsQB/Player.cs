@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
         fuel = maxFuel;
         isInvincible = false;
         mySprite = GetComponent<SpriteRenderer>();
+        movementSpeed = 1000;
     }
 
     void Update()
