@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerPerks m_playerPerks;
     
     [Header("Movement Settings")]
-    public int movementSpeed;
+    public float movementSpeed;
     public float fuel;
     public float maxFuel;
     public float rotateSpeed;
@@ -49,7 +49,6 @@ public class Player : MonoBehaviour
         fuel = maxFuel;
         isInvincible = false;
         mySprite = GetComponent<SpriteRenderer>();
-        movementSpeed = 1000;
         currentHP = maxHP;
     }
 
@@ -101,7 +100,8 @@ public class Player : MonoBehaviour
     {
         int boostFactor = useBoost ? 2 : 1;
 
-        rigidbody.AddRelativeForce(Vector3.up * movementSpeed * Time.deltaTime * boostFactor);
+        rigidbody.AddRelativeForce(Vector3.up * movementSpeed * Time.deltaTime * boostFactor, ForceMode2D.Impulse);
+
         fuel -= regularFuelConsumption * boostFactor;
 
         var emitParams = new ParticleSystem.EmitParams
