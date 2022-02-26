@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public float maxFuel;
     public float rotateSpeed;
     private new Rigidbody2D rigidbody;
+    private bool EngineAlreadyHeard;
 
     [Header("Health Settings")]
     public int currentHP = 3;
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour
         isInvincible = false;
         mySprite = GetComponent<SpriteRenderer>();
         currentHP = maxHP;
+        EngineAlreadyHeard = false;
     }
 
     void Update()
@@ -61,7 +63,19 @@ public class Player : MonoBehaviour
 
         if (m_playerPerks.m_inverseController) horizontalInput *= -1.0f;
 
-        if (horizontalInput < - 0.01f) transform.Rotate(new Vector3(0, 0, rotateSpeed));
+        if (verticalInput != 0 && !EngineAlreadyHeard)
+        {
+            FindObjectOfType<AudioManager>().Play("Engine Noise");
+            EngineAlreadyHeard = true;
+        }
+
+        if (verticalInput == 0 && EngineAlreadyHeard)
+        {
+            FindObjectOfType<AudioManager>().Stop("Engine Noise");
+            EngineAlreadyHeard = false;
+        }
+
+            if (horizontalInput < - 0.01f) transform.Rotate(new Vector3(0, 0, rotateSpeed));
 
         else if (horizontalInput > 0.01f) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
 
@@ -130,6 +144,7 @@ public class Player : MonoBehaviour
 
     void Die()
     {
+        if (EngineAlreadyHeard) FindObjectOfType<AudioManager>().Stop("Engine Noise");
         enabled = false;
         m_collider.enabled = false;
         rigidbody.velocity = Vector3.zero;
