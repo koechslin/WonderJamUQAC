@@ -8,19 +8,20 @@ public class Parallax : MonoBehaviour
     [SerializeField]
     private float parallaxEffect;
     
-    private float length;
-    private float startPos;
+    private float startPosX;
+    private float startPosY;
 
     private void Start()
     {
-        startPos = transform.position.x;
-        length = GetComponent<SpriteRenderer>().bounds.size.x;
+        startPosX = transform.position.x;
+        startPosY = transform.position.y;
     }
 
     private void FixedUpdate()
     {
-        float distance = cam.transform.position.x * parallaxEffect;
+        float distanceX = cam.transform.position.x * parallaxEffect;
+        float distanceY = cam.transform.position.y * parallaxEffect;
 
-        transform.position = new Vector3(startPos + distance, transform.position.y, transform.position.z);
+        transform.position = new Vector3(startPosX + distanceX, startPosY + distanceY, transform.position.z);
     }
 }
