@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,8 +24,23 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Text finishTextP2;
 
+    [Header("Perks")]
+    [SerializeField] private GameObject m_perksMenuP1;
+    [SerializeField] private GameObject m_perksMenuP2;
+    [SerializeField] private List<GeneratePerk> m_perks;
+
     private int scoreP1;
     private int scoreP2;
+    private Vector3 startPosP1;
+    private Vector3 startPosP2;
+    private bool p1finishChoice = false;
+    private bool p2finishChoice = false;
+
+    private void Start()
+    {
+        startPosP1 = player1.transform.position;
+        startPosP2 = player2.transform.position;
+    }
 
     public void QuitGame()
     {
@@ -51,10 +68,35 @@ public class GameManager : MonoBehaviour
             imagesScoreP2[i].color = i < scoreP2 ? player2.defaultColor : new Color(0f, 0f, 0f, 0f);
         }
 
-        CheckMaxScore();
+        bool raceFinished = CheckMaxScore();
+
+        if (raceFinished)
+        {
+            DisplayFinishRaceText();
+        }
+        else
+        {
+            DisplayPerksMenu();
+        }
     }
 
-    private void CheckMaxScore()
+    private bool CheckMaxScore()
+    {
+        return scoreP1 == nbRoundsToWin || scoreP2 == nbRoundsToWin;
+    }
+
+    private void DisplayPerksMenu()
+    {
+        m_perksMenuP1.SetActive(true);
+        m_perksMenuP2.SetActive(true);
+
+        foreach (GeneratePerk gp in m_perks)
+        {
+            gp.Setup();
+        }
+    }
+
+    private void DisplayFinishRaceText()
     {
         if (scoreP1 == nbRoundsToWin)
         {
@@ -65,7 +107,7 @@ public class GameManager : MonoBehaviour
             finishTextP2.gameObject.SetActive(true);
         }
 
-        else if (scoreP2 == nbRoundsToWin)
+        if (scoreP2 == nbRoundsToWin)
         {
             finishTextP2.text = "You win the race !";
             finishTextP2.gameObject.SetActive(true);
@@ -73,5 +115,29 @@ public class GameManager : MonoBehaviour
             finishTextP1.text = "You lose the race !";
             finishTextP1.gameObject.SetActive(true);
         }
+    }
+
+    public void Respawn(string playerTag)
+    {
+        switch (playerTag)
+        {
+            case "P1":
+                p1finishChoice = true;
+                break;
+            case "P2":
+                p2finishChoice = true;
+                break;
+        }
+
+        if (!p1finishChoice || !p2finishChoice) return;
+
+        m_perksMenuP1.SetActive(false);
+        m_perksMenuP2.SetActive(false);
+
+        player1.transform.position = startPosP1;
+        player2.transform.position = startPosP2;
+
+        player1.Respawn();
+        player2.Respawn();
     }
 }
