@@ -1,7 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class Player : MonoBehaviour
 {
     [Header("Fuel Consumption")]
@@ -10,11 +11,11 @@ public class Player : MonoBehaviour
     public float fuelReplenishmentWhenEmpty = 0.1f;
 
     [Header("Movement Settings")]
-    public int movementspeed;
-    Rigidbody2D m_Rigidbody;
+    public int movementSpeed;
     public float fuel;
     public float maxFuel;
     public float rotateSpeed;
+    private new Rigidbody2D rigidbody;
 
     [Header("Health Settings")]
     public int hp = 3;
@@ -25,29 +26,29 @@ public class Player : MonoBehaviour
     private bool isInvincible;
     private SpriteRenderer mySprite;
 
-    // Start is called before the first frame update
+    [HideInInspector]
+    public float horizontalInput;
+    [HideInInspector]
+    public float verticalInput;
+
     void Start()
     {
-        m_Rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody = GetComponent<Rigidbody2D>();
         fuel = maxFuel;
         isInvincible = false;
         mySprite = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
-        // Si on veut impl�menter une limite : get la velocity du RigidBody puis normaliser le vecteur + multiplier par la vitesse max
+        // Si on veut implémenter une limite : get la velocity du RigidBody puis normaliser le vecteur + multiplier par la vitesse max
 
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        if (horizontalInput < - 0.01f) transform.Rotate(new Vector3(0, 0, rotateSpeed));
+        
+        else if (horizontalInput > 0.01f) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
 
-        if (Input.GetKey("left")) transform.Rotate(new Vector3(0, 0, rotateSpeed));
-
-        else if (Input.GetKey("right")) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
-
-        if (Input.GetKey("up"))
+        if (verticalInput > 0.01f)
         {
             if (fuel < regularFuelConsumption)
             {
@@ -58,18 +59,18 @@ public class Player : MonoBehaviour
             {
                 if (fuel >= regularFuelConsumption * 2)
                 {
-                    AddForceToShip("boost");
+                    AddForceToShip(true);
                 }
-                else if (fuel >= regularFuelConsumption && fuel < regularFuelConsumption*2)
+                else if (fuel >= regularFuelConsumption && fuel < regularFuelConsumption * 2)
                 {
-                    AddForceToShip("notBoost");
+                    AddForceToShip(false);
                 }
             }
-            else if (!Input.GetKey("space"))
+            else
             {
                 if (fuel >= regularFuelConsumption)
                 {
-                    AddForceToShip("notBoost");
+                    AddForceToShip(false);
                 }
             }
         }
@@ -80,25 +81,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void AddForceToShip(string boostOrNotBoost)
+    private void AddForceToShip(bool useBoost)
     {
-        int boost;
-        if (boostOrNotBoost == "boost")
-        {
-            boost = 2;
-        }
-        else
-        {
-            boost = 1;
-        }
-        m_Rigidbody.AddRelativeForce(Vector3.up * movementspeed * Time.deltaTime * boost);
+        int boost = useBoost ? 2 : 1;
+        
+        rigidbody.AddRelativeForce(Vector3.up * movementSpeed * Time.deltaTime * boost);
         fuel -= regularFuelConsumption * boost;
     }
 
     void TakeDamage()
     {
         hp--;
-        StartCoroutine(FlashCo());
+        StartCoroutine(FlashCoroutine());
         if (hp == 0) Die();
     }
 
@@ -107,18 +101,20 @@ public class Player : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private IEnumerator FlashCo()
+    private IEnumerator FlashCoroutine()
     {
-        int temp = 0;
+        int currentNbOfFlashes = 0;
         isInvincible = true;
-        while(temp < numberOfFlashes)
+        
+        while(currentNbOfFlashes < numberOfFlashes)
         {
             mySprite.color = flashColor;
             yield return new WaitForSeconds(flashDuration);
             mySprite.color = regularColor;
             yield return new WaitForSeconds(flashDuration);
-            temp++;
+            currentNbOfFlashes++;
         }
+        
         isInvincible = false;
     }
 }
