@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
 
     public int movementspeed;
+    public float rotateSpeed;
     Rigidbody2D m_Rigidbody;
     [SerializeField] float fuel;
     public float maxFuel;
@@ -27,6 +28,9 @@ public class Player : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         Vector2 direction = new Vector3(horizontalInput, verticalInput, 0f);
         Vector2 checkDirectionNull = new Vector2(0, 0);
+
+        // Set rotation of the ship
+        transform.RotateAround(transform.position, new Vector3(0, 0, 1), -horizontalInput * rotateSpeed * Time.deltaTime);
 
         if (!direction.Equals(checkDirectionNull))
         {

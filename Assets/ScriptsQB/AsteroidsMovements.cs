@@ -8,6 +8,7 @@ public class AsteroidsMovements : MonoBehaviour
     [SerializeField] private float m_forceValue;
     [SerializeField] private Rigidbody2D m_rigidbody;
     [SerializeField] private float m_detectionDistance;
+    [SerializeField] private float m_timeBetweenTwoChange;
     
     private GameObject[] m_players;
     private GameObject m_nearestPlayer;
@@ -43,13 +44,17 @@ public class AsteroidsMovements : MonoBehaviour
         FindNearestPlayer();
         m_currentDistanceNearestPlayer = GetDistanceWith(m_nearestPlayer);
 
-        // Check if near to a player
+        // Check if near to a player and his deviation perks
         if ((m_currentDistanceNearestPlayer < m_detectionDistance) && m_canChange)
         {
-            m_canChange = false;
-            m_velocity = m_rigidbody.velocity;
-            Vector2 newForce = Vector2.Reflect(m_velocity, transform.position.normalized) * m_forceValue;
-            m_rigidbody.AddForce(newForce);
+            if (m_nearestPlayer.GetComponent<PlayerPerks>().m_asteroidDeviation)
+            {
+                m_canChange = false;
+                m_velocity = m_rigidbody.velocity;
+
+                Vector2 newForce = Vector2.Reflect(m_velocity, transform.position.normalized) * m_forceValue;
+                m_rigidbody.AddForce(newForce);
+            }
         }
 
         // update the rotation
@@ -74,5 +79,20 @@ public class AsteroidsMovements : MonoBehaviour
     {
         float distance = Mathf.Sqrt(Mathf.Pow((gb.transform.position.x - transform.position.x), 2) + Mathf.Pow((gb.transform.position.y - transform.position.y), 2));
         return distance;
+    }
+
+    private IEnumerator ReleaseChangeForce()
+    {
+        yield return new WaitForSeconds(m_timeBetweenTwoChange);
+        m_canChange = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("hit");
+            Destroy(gameObject);
+        }
     }
 }
