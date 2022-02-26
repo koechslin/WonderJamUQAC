@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
     public float horizontalInput;
     [HideInInspector]
     public float verticalInput;
+    [HideInInspector]
+    public bool isBoostActivated;
 
     void Start()
     {
@@ -58,7 +60,7 @@ public class Player : MonoBehaviour
                 fuel += fuelReplenishmentWhenEmpty;
             }
 
-            if (Input.GetKey("space"))
+            if (isBoostActivated)
             {
                 if (fuel >= regularFuelConsumption * 2)
                 {
