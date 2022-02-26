@@ -29,7 +29,11 @@ public class SpawnAsteroids : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("hit");
+            Player player = collision.gameObject.GetComponent<Player>();
+            if (!player.isInvincible)
+            {
+                player.TakeDamage();
+            }
         }
     }
 }

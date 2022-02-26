@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     public float regularFuelReplenishment = 0.5f;
     public float fuelReplenishmentWhenEmpty = 0.1f;
 
+    [SerializeField] private Animator m_animator;
+    [SerializeField] private PlayerPerks m_playerPerks;
+    
     [Header("Movement Settings")]
     public int movementSpeed;
     public float fuel;
@@ -20,12 +23,13 @@ public class Player : MonoBehaviour
     private new Rigidbody2D rigidbody;
 
     [Header("Health Settings")]
-    public int hp = 3;
+    public int currentHP = 3;
+    public int maxHP = 3;
     public Color regularColor;
     public Color flashColor;
     public float flashDuration;
     public int numberOfFlashes;
-    private bool isInvincible;
+    public bool isInvincible;
     private SpriteRenderer mySprite;
 
     [Header("Particles settings")]
@@ -46,6 +50,7 @@ public class Player : MonoBehaviour
         isInvincible = false;
         mySprite = GetComponent<SpriteRenderer>();
         movementSpeed = 1000;
+        currentHP = maxHP;
     }
 
     void Update()
@@ -53,10 +58,23 @@ public class Player : MonoBehaviour
 
         // Si on veut implémenter une limite : get la velocity du RigidBody puis normaliser le vecteur + multiplier par la vitesse max
 
-        if (horizontalInput < - 0.01f) transform.Rotate(new Vector3(0, 0, rotateSpeed));
-        
-        else if (horizontalInput > 0.01f) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        Vector2 direction = new Vector3(horizontalInput, verticalInput, 0f);
+        Vector2 checkDirectionNull = new Vector2(0, 0);
 
+        if (m_playerPerks.m_inverseController)
+        {
+            if (Input.GetKey("left")) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
+
+            else if (Input.GetKey("right")) transform.Rotate(new Vector3(0, 0, rotateSpeed));
+        }
+        else
+        {
+            if (Input.GetKey("left")) transform.Rotate(new Vector3(0, 0, rotateSpeed));
+
+            else if (Input.GetKey("right")) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
+        }
         if (verticalInput > 0.01f)
         {
             if (fuel < regularFuelConsumption)
@@ -107,11 +125,12 @@ public class Player : MonoBehaviour
         particle.Emit(emitParams, boostFactor);
     }
 
-    void TakeDamage()
+    public void TakeDamage()
     {
-        hp--;
-        StartCoroutine(FlashCoroutine());
-        if (hp == 0) Die();
+        currentHP--;
+        m_animator.SetTrigger("OnHit");
+        StartCoroutine(FlashCo());
+        if (currentHP == 0) Die();
     }
 
     void Die()
