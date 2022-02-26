@@ -58,24 +58,18 @@ public class Player : MonoBehaviour
             {
                 if (fuel >= regularFuelConsumption * 2)
                 {
-                    m_Rigidbody.AddRelativeForce(Vector3.up * movementspeed * Time.deltaTime * 2);
-                    fuel -= regularFuelConsumption * 2;
-                    Debug.Log("boosto");
+                    AddForceToShip("boost");
                 }
                 else if (fuel >= regularFuelConsumption && fuel < regularFuelConsumption*2)
                 {
-                    m_Rigidbody.AddRelativeForce(Vector3.up * movementspeed * Time.deltaTime);
-                    fuel -= regularFuelConsumption;
-                    Debug.Log("regular");
+                    AddForceToShip("notBoost");
                 }
             }
             else if (!Input.GetKey("space"))
             {
                 if (fuel >= regularFuelConsumption)
                 {
-                    m_Rigidbody.AddRelativeForce(Vector3.up * movementspeed * Time.deltaTime);
-                    fuel -= regularFuelConsumption;
-                    Debug.Log("regular");
+                    AddForceToShip("notBoost");
                 }
             }
         }
@@ -84,6 +78,21 @@ public class Player : MonoBehaviour
             fuel += regularFuelReplenishment;
             if (fuel > maxFuel) fuel = maxFuel;
         }
+    }
+
+    private void AddForceToShip(string boostOrNotBoost)
+    {
+        int boost;
+        if (boostOrNotBoost == "boost")
+        {
+            boost = 2;
+        }
+        else
+        {
+            boost = 1;
+        }
+        m_Rigidbody.AddRelativeForce(Vector3.up * movementspeed * Time.deltaTime * boost);
+        fuel -= regularFuelConsumption * boost;
     }
 
     void TakeDamage()
