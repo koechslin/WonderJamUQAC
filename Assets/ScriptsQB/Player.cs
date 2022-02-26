@@ -34,6 +34,10 @@ public class Player : MonoBehaviour
     public bool isInvincible;
     private SpriteRenderer mySprite;
 
+    [Header("Particles settings")]
+    public Color defaultColor;
+    public Color boostColor;
+
     [HideInInspector]
     public float horizontalInput;
     [HideInInspector]
@@ -47,7 +51,6 @@ public class Player : MonoBehaviour
         fuel = maxFuel;
         isInvincible = false;
         mySprite = GetComponent<SpriteRenderer>();
-        movementSpeed = 1000;
         currentHP = maxHP;
     }
 
@@ -56,23 +59,12 @@ public class Player : MonoBehaviour
 
         // Si on veut implémenter une limite : get la velocity du RigidBody puis normaliser le vecteur + multiplier par la vitesse max
 
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        Vector2 direction = new Vector3(horizontalInput, verticalInput, 0f);
-        Vector2 checkDirectionNull = new Vector2(0, 0);
+        if (m_playerPerks.m_inverseController) horizontalInput *= -1.0f;
 
-        if (m_playerPerks.m_inverseController)
-        {
-            if (Input.GetKey("left")) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
+        if (horizontalInput < - 0.01f) transform.Rotate(new Vector3(0, 0, rotateSpeed));
 
-            else if (Input.GetKey("right")) transform.Rotate(new Vector3(0, 0, rotateSpeed));
-        }
-        else
-        {
-            if (Input.GetKey("left")) transform.Rotate(new Vector3(0, 0, rotateSpeed));
+        else if (horizontalInput > 0.01f) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
 
-            else if (Input.GetKey("right")) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
-        }
         if (verticalInput > 0.01f)
         {
             if (fuel < regularFuelConsumption)
@@ -108,14 +100,20 @@ public class Player : MonoBehaviour
 
     private void AddForceToShip(bool useBoost)
     {
-        int boost = useBoost ? 2 : 1;
+        int boostFactor = useBoost ? 2 : 1;
+
+        rigidbody.AddRelativeForce(Vector3.up * movementSpeed * Time.deltaTime * boostFactor, ForceMode2D.Impulse);
+
+        fuel -= regularFuelConsumption * boostFactor;
+
+        var emitParams = new ParticleSystem.EmitParams
+        {
+            startColor = defaultColor
+        };
+
+        if (useBoost) emitParams.startColor = boostColor;
         
-        rigidbody.AddRelativeForce(Vector3.up * movementSpeed * Time.deltaTime * boost);
-        fuel -= regularFuelConsumption * boost;
-        var emitParams = new ParticleSystem.EmitParams();
-        if (boost == 1) emitParams.startColor = Color.magenta;
-        else if (boost == 2) emitParams.startColor = Color.red;
-        particle.Emit(emitParams, boost);
+        particle.Emit(emitParams, boostFactor);
     }
 
     public void TakeDamage()
