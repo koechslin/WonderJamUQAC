@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Player : MonoBehaviour
 {
+    [SerializeField] private Collider2D m_collider;
+    
     public ParticleSystem particle;
 
     [Header("Fuel Consumption")]
@@ -118,12 +120,27 @@ public class Player : MonoBehaviour
         currentHP--;
         m_animator.SetTrigger("OnHit");
         StartCoroutine(FlashCoroutine());
-        if (currentHP == 0) Die();
+        if (currentHP == 0) 
+        {
+            Die();
+            m_animator.SetTrigger("Die");
+        }
     }
 
     void Die()
     {
-        gameObject.SetActive(false);
+        enabled = false;
+        m_collider.enabled = false;
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = 0f;
+    }
+
+    public void Respawn()
+    {
+        enabled = true;
+        m_collider.enabled = true;
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = 0f;
     }
 
     private IEnumerator FlashCoroutine()

@@ -41,6 +41,8 @@ public class CheckStateOfPlayers : MonoBehaviour
         if (p1Ready && p2Ready)
         {
             SceneManager.LoadScene(race);
+            FindObjectOfType<AudioManager>().Stop("Main Menu");
+            FindObjectOfType<AudioManager>().Play("Space Race");
         }
     }
 }

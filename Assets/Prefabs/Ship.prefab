@@ -4904,6 +4904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff5beb305490fd46b8eb32b36db662c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_collider: {fileID: 4637106392007076935}
   particle: {fileID: 1908888726}
   regularFuelConsumption: 1
   regularFuelReplenishment: 1.5
@@ -4985,7 +4986,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c0065128be45c4da8a90b8fd361714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_player: {fileID: 0}
+  m_player: {fileID: 5810677037346925276}
+  m_speedUp: 1.3
+  m_speedDown: 0.7
+  m_regenFuelChange: 0.1
   m_asteroidDeviation: 0
   m_inverseController: 0
 --- !u!95 &743108816
