@@ -58,23 +58,12 @@ public class Player : MonoBehaviour
 
         // Si on veut implémenter une limite : get la velocity du RigidBody puis normaliser le vecteur + multiplier par la vitesse max
 
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        Vector2 direction = new Vector3(horizontalInput, verticalInput, 0f);
-        Vector2 checkDirectionNull = new Vector2(0, 0);
+        if (m_playerPerks.m_inverseController) horizontalInput *= -1.0f;
 
-        if (m_playerPerks.m_inverseController)
-        {
-            if (Input.GetKey("left")) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
+        if (horizontalInput < - 0.01f) transform.Rotate(new Vector3(0, 0, rotateSpeed));
 
-            else if (Input.GetKey("right")) transform.Rotate(new Vector3(0, 0, rotateSpeed));
-        }
-        else
-        {
-            if (Input.GetKey("left")) transform.Rotate(new Vector3(0, 0, rotateSpeed));
+        else if (horizontalInput > 0.01f) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
 
-            else if (Input.GetKey("right")) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
-        }
         if (verticalInput > 0.01f)
         {
             if (fuel < regularFuelConsumption)
