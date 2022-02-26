@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class GeneratePerk : MonoBehaviour
 {
     [SerializeField] private Animator m_animator;
+    [SerializeField] private string m_playerTag;
+    [SerializeField] private GameObject m_perksMenu;
     
     private GameObject m_player;
     private PlayerPerks m_playerPerks;
@@ -41,17 +43,14 @@ public class GeneratePerk : MonoBehaviour
     [SerializeField] private Text m_bonusText;
     [SerializeField] private Text m_malusText;
 
+    [SerializeField] private FinishLine m_finishLine;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        m_player = GameObject.FindGameObjectWithTag("Player");
+        m_player = GameObject.FindGameObjectWithTag(m_playerTag);
         m_playerPerks = m_player.GetComponent<PlayerPerks>();
-
-        Generate();
-        SetBonusText();
-        SetMalusText();
-        m_animator.SetBool("IsChoosingPerk", true);
     }
 
     public void Setup()
@@ -59,7 +58,6 @@ public class GeneratePerk : MonoBehaviour
         Generate();
         SetBonusText();
         SetMalusText();
-        m_animator.SetBool("IsChoosingPerk", true);
     }
 
     public void Generate()
@@ -136,7 +134,7 @@ public class GeneratePerk : MonoBehaviour
             m_playerPerks.DecreaseRegenFuel();
         }
 
-
-        m_animator.SetBool("IsChoosingPerk", false);
+        m_finishLine.Respawn(m_playerTag);
+        m_perksMenu.SetActive(false);
     }
 }

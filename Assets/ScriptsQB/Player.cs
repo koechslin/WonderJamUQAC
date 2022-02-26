@@ -136,6 +136,14 @@ public class Player : MonoBehaviour
         rigidbody.angularVelocity = 0f;
     }
 
+    public void Respawn()
+    {
+        enabled = true;
+        m_collider.enabled = true;
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = 0f;
+    }
+
     private IEnumerator FlashCoroutine()
     {
         int currentNbOfFlashes = 0;
