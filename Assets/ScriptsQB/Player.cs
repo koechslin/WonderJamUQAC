@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Fuel Consumption")]
+    public int regularFuelConsumption = 1;
+    public float regularFuelReplenishment = 0.5f;
+    public float fuelReplenishmentWhenEmpty = 0.1f;
 
     [Header("Movement Settings")]
     public int movementspeed;
@@ -38,8 +42,6 @@ public class Player : MonoBehaviour
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        Vector2 direction = new Vector3(horizontalInput, verticalInput, 0f);
-        Vector2 checkDirectionNull = new Vector2(0, 0);
 
         if (Input.GetKey("left")) transform.Rotate(new Vector3(0, 0, rotateSpeed));
 
@@ -47,21 +49,39 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey("up"))
         {
-            if (fuel < 1)
+            if (fuel < regularFuelConsumption)
             {
-                fuel += 0.1f;
+                fuel += fuelReplenishmentWhenEmpty;
             }
 
-            if (fuel >= 1)
+            if (Input.GetKey("space"))
             {
-                m_Rigidbody.AddRelativeForce(Vector3.up * movementspeed * Time.deltaTime);
-                fuel--;
+                if (fuel >= regularFuelConsumption * 2)
+                {
+                    m_Rigidbody.AddRelativeForce(Vector3.up * movementspeed * Time.deltaTime * 2);
+                    fuel -= regularFuelConsumption * 2;
+                    Debug.Log("boosto");
+                }
+                else if (fuel >= regularFuelConsumption && fuel < regularFuelConsumption*2)
+                {
+                    m_Rigidbody.AddRelativeForce(Vector3.up * movementspeed * Time.deltaTime);
+                    fuel -= regularFuelConsumption;
+                    Debug.Log("regular");
+                }
             }
-
+            else if (!Input.GetKey("space"))
+            {
+                if (fuel >= regularFuelConsumption)
+                {
+                    m_Rigidbody.AddRelativeForce(Vector3.up * movementspeed * Time.deltaTime);
+                    fuel -= regularFuelConsumption;
+                    Debug.Log("regular");
+                }
+            }
         }
         else
         {
-            fuel += 0.5f;
+            fuel += regularFuelReplenishment;
             if (fuel > maxFuel) fuel = maxFuel;
         }
     }
