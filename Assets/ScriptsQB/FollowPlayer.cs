@@ -7,7 +7,7 @@ public class FollowPlayer : MonoBehaviour
     [SerializeField]
     private float smoothSpeed;
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         Vector3 desiredPosition = player.position;
 
