@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Player : MonoBehaviour
 {
+    public ParticleSystem particle;
+
     [Header("Fuel Consumption")]
     public int regularFuelConsumption = 1;
     public float regularFuelReplenishment = 0.5f;
@@ -87,6 +89,10 @@ public class Player : MonoBehaviour
         
         rigidbody.AddRelativeForce(Vector3.up * movementSpeed * Time.deltaTime * boost);
         fuel -= regularFuelConsumption * boost;
+        var emitParams = new ParticleSystem.EmitParams();
+        if (boost == 1) emitParams.startColor = Color.magenta;
+        else if (boost == 2) emitParams.startColor = Color.red;
+        particle.Emit(emitParams, boost);
     }
 
     void TakeDamage()
