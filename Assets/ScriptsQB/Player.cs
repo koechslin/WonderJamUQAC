@@ -60,7 +60,6 @@ public class Player : MonoBehaviour
     {
 
         // Si on veut implémenter une limite : get la velocity du RigidBody puis normaliser le vecteur + multiplier par la vitesse max
-
         if (m_playerPerks.m_inverseController) horizontalInput *= -1.0f;
 
         if (verticalInput != 0 && !EngineAlreadyHeard)
@@ -174,5 +173,11 @@ public class Player : MonoBehaviour
         }
         
         isInvincible = false;
+    }
+
+    public void StopPlayer()
+    {
+        rigidbody.velocity = Vector2.zero;
+        this.enabled = false;
     }
 }
