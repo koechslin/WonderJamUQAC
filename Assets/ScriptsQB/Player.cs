@@ -5,6 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
+    [SerializeField] private Animator m_animator;
+    [SerializeField] private PlayerPerks m_playerPerks;
+    
     [Header("Movement Settings")]
     public int movementspeed;
     Rigidbody2D m_Rigidbody;
@@ -13,12 +16,13 @@ public class Player : MonoBehaviour
     public float rotateSpeed;
 
     [Header("Health Settings")]
-    public int hp = 3;
+    public int currentHP = 3;
+    public int maxHP = 3;
     public Color regularColor;
     public Color flashColor;
     public float flashDuration;
     public int numberOfFlashes;
-    private bool isInvincible;
+    public bool isInvincible;
     private SpriteRenderer mySprite;
 
     // Start is called before the first frame update
@@ -28,6 +32,7 @@ public class Player : MonoBehaviour
         fuel = maxFuel;
         isInvincible = false;
         mySprite = GetComponent<SpriteRenderer>();
+        currentHP = maxHP;
     }
 
     // Update is called once per frame
@@ -41,9 +46,18 @@ public class Player : MonoBehaviour
         Vector2 direction = new Vector3(horizontalInput, verticalInput, 0f);
         Vector2 checkDirectionNull = new Vector2(0, 0);
 
-        if (Input.GetKey("left")) transform.Rotate(new Vector3(0, 0, rotateSpeed));
+        if (m_playerPerks.m_inverseController)
+        {
+            if (Input.GetKey("left")) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
 
-        else if (Input.GetKey("right")) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
+            else if (Input.GetKey("right")) transform.Rotate(new Vector3(0, 0, rotateSpeed));
+        }
+        else
+        {
+            if (Input.GetKey("left")) transform.Rotate(new Vector3(0, 0, rotateSpeed));
+
+            else if (Input.GetKey("right")) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
+        }
 
         if (Input.GetKey("up"))
         {
@@ -66,11 +80,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    void TakeDamage()
+    public void TakeDamage()
     {
-        hp--;
+        currentHP--;
+        m_animator.SetTrigger("OnHit");
         StartCoroutine(FlashCo());
-        if (hp == 0) Die();
+        if (currentHP == 0) Die();
     }
 
     void Die()

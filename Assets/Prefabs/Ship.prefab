@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5810677037346925251}
   - component: {fileID: 4637106392007076935}
   - component: {fileID: 776207437}
+  - component: {fileID: 743108816}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Player
@@ -98,10 +99,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff5beb305490fd46b8eb32b36db662c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_animator: {fileID: 743108816}
+  m_playerPerks: {fileID: 776207437}
   movementspeed: 1000
-  rotateSpeed: 20
   fuel: 10000
   maxFuel: 0
+  rotateSpeed: 0.2
+  hp: 3
+  regularColor: {r: 0, g: 0, b: 0, a: 0}
+  flashColor: {r: 0, g: 0, b: 0, a: 0}
+  flashDuration: 0
+  numberOfFlashes: 0
+  isInvincible: 0
 --- !u!50 &5810677037346925251
 Rigidbody2D:
   serializedVersion: 4
@@ -161,4 +170,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c0065128be45c4da8a90b8fd361714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_asteroidDeviation: 1
+  m_asteroidDeviation: 0
+  m_inverseController: 0
+--- !u!95 &743108816
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810677037346925250}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bec648e5337d04145a3781916bcf5f2a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

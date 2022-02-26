@@ -91,8 +91,12 @@ public class AsteroidsMovements : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("hit");
-            Destroy(gameObject);
+            Player player = collision.GetComponent<Player>();           
+            if (!player.isInvincible)
+            {
+                player.TakeDamage();
+                Destroy(gameObject);
+            }
         }
     }
 }
