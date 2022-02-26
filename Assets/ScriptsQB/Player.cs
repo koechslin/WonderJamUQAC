@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
     {
         currentHP--;
         m_animator.SetTrigger("OnHit");
-        StartCoroutine(FlashCo());
+        StartCoroutine(FlashCoroutine());
         if (currentHP == 0) Die();
     }
 
