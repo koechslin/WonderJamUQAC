@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [Header("Movement Settings")]
     public int movementspeed;
     Rigidbody2D m_Rigidbody;
-    [SerializeField] float fuel;
+    public float fuel;
     public float maxFuel;
     public float rotateSpeed;
 
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        // Si on veut implémenter une limite : get la velocity du RigidBody puis normaliser le vecteur + multiplier par la vitesse max
+        // Si on veut implï¿½menter une limite : get la velocity du RigidBody puis normaliser le vecteur + multiplier par la vitesse max
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
