@@ -4904,21 +4904,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff5beb305490fd46b8eb32b36db662c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_collider: {fileID: 4637106392007076935}
   particle: {fileID: 1908888726}
   regularFuelConsumption: 1
   regularFuelReplenishment: 0.5
   fuelReplenishmentWhenEmpty: 0.1
   m_animator: {fileID: 743108816}
   m_playerPerks: {fileID: 776207437}
-  movementspeed: 1000
+  movementSpeed: 0
   fuel: 0
   maxFuel: 100
   rotateSpeed: 0.2
-  hp: 3
+  currentHP: 3
+  maxHP: 2
   regularColor: {r: 1, g: 1, b: 1, a: 1}
   flashColor: {r: 1, g: 1, b: 1, a: 0.49803922}
   flashDuration: 0.07
   numberOfFlashes: 3
+  isInvincible: 0
+  horizontalInput: 0
+  verticalInput: 0
+  isBoostActivated: 0
 --- !u!50 &5810677037346925251
 Rigidbody2D:
   serializedVersion: 4
@@ -4978,6 +4984,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c0065128be45c4da8a90b8fd361714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_player: {fileID: 5810677037346925276}
+  m_speedUp: 1.3
+  m_speedDown: 0.7
+  m_regenFuelChange: 0.1
   m_asteroidDeviation: 0
   m_inverseController: 0
 --- !u!95 &743108816

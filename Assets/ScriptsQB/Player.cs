@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Player : MonoBehaviour
 {
+    [SerializeField] private Collider2D m_collider;
+    
     public ParticleSystem particle;
 
     [Header("Fuel Consumption")]
@@ -16,7 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerPerks m_playerPerks;
     
     [Header("Movement Settings")]
-    public int movementSpeed;
+    public float movementSpeed;
     public float fuel;
     public float maxFuel;
     public float rotateSpeed;
@@ -120,13 +122,20 @@ public class Player : MonoBehaviour
     {
         currentHP--;
         m_animator.SetTrigger("OnHit");
-        StartCoroutine(FlashCo());
-        if (currentHP == 0) Die();
+        StartCoroutine(FlashCoroutine());
+        if (currentHP == 0) 
+        {
+            Die();
+            m_animator.SetTrigger("Die");
+        }
     }
 
     void Die()
     {
-        gameObject.SetActive(false);
+        enabled = false;
+        m_collider.enabled = false;
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = 0f;
     }
 
     private IEnumerator FlashCoroutine()
