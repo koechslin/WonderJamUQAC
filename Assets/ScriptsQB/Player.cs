@@ -5,17 +5,29 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
+    [Header("Movement Settings")]
     public int movementspeed;
     Rigidbody2D m_Rigidbody;
     [SerializeField] float fuel;
     public float maxFuel;
     public float rotateSpeed;
 
+    [Header("Health Settings")]
+    public int hp = 3;
+    public Color regularColor;
+    public Color flashColor;
+    public float flashDuration;
+    public int numberOfFlashes;
+    private bool isInvincible;
+    private SpriteRenderer mySprite;
+
     // Start is called before the first frame update
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody2D>();
         fuel = maxFuel;
+        isInvincible = false;
+        mySprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -43,17 +55,41 @@ public class Player : MonoBehaviour
             if (fuel >= 1)
             {
                 m_Rigidbody.AddRelativeForce(Vector3.up * movementspeed * Time.deltaTime);
-                fuel -= 1;
+                fuel--;
             }
-                
+
         }
         else
         {
             fuel += 0.5f;
             if (fuel > maxFuel) fuel = maxFuel;
         }
-            
+    }
 
-        
+    void TakeDamage()
+    {
+        hp--;
+        StartCoroutine(FlashCo());
+        if (hp == 0) Die();
+    }
+
+    void Die()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private IEnumerator FlashCo()
+    {
+        int temp = 0;
+        isInvincible = true;
+        while(temp < numberOfFlashes)
+        {
+            mySprite.color = flashColor;
+            yield return new WaitForSeconds(flashDuration);
+            mySprite.color = regularColor;
+            yield return new WaitForSeconds(flashDuration);
+            temp++;
+        }
+        isInvincible = false;
     }
 }
