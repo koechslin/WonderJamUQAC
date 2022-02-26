@@ -4537,6 +4537,18 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: Crash
+    clip: {fileID: 8300000, guid: 363d071ec6d32784dbf896259854f542, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Engine Noise
+    clip: {fileID: 8300000, guid: ecc5aee97241e3e4aa394157e7a04cdc, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
 --- !u!4 &1355554078
 Transform:
   m_ObjectHideFlags: 0

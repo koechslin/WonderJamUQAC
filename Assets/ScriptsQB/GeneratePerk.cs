@@ -43,12 +43,13 @@ public class GeneratePerk : MonoBehaviour
     [SerializeField] private Text m_bonusText;
     [SerializeField] private Text m_malusText;
 
-    [SerializeField] private FinishLine m_finishLine;
+    private GameManager gameManager;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         m_player = GameObject.FindGameObjectWithTag(m_playerTag);
         m_playerPerks = m_player.GetComponent<PlayerPerks>();
     }
@@ -134,7 +135,7 @@ public class GeneratePerk : MonoBehaviour
             m_playerPerks.DecreaseRegenFuel();
         }
 
-        m_finishLine.Respawn(m_playerTag);
+        gameManager.Respawn(m_playerTag);
         m_perksMenu.SetActive(false);
     }
 }
