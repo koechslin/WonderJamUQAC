@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     Rigidbody2D m_Rigidbody;
     [SerializeField] float fuel;
     public float maxFuel;
+    public float rotateSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,11 @@ public class Player : MonoBehaviour
         Vector2 direction = new Vector3(horizontalInput, verticalInput, 0f);
         Vector2 checkDirectionNull = new Vector2(0, 0);
 
-        if (!direction.Equals(checkDirectionNull))
+        if (Input.GetKey("left")) transform.Rotate(new Vector3(0, 0, rotateSpeed));
+
+        else if (Input.GetKey("right")) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
+
+        if (Input.GetKey("up"))
         {
             if (fuel < 1)
             {
@@ -37,12 +42,11 @@ public class Player : MonoBehaviour
 
             if (fuel >= 1)
             {
-                m_Rigidbody.AddForce(direction * movementspeed * Time.deltaTime);
+                m_Rigidbody.AddRelativeForce(Vector3.up * movementspeed * Time.deltaTime);
                 fuel -= 1;
             }
                 
         }
-
         else
         {
             fuel += 0.5f;

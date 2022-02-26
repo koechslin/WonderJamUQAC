@@ -259,7 +259,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementspeed: 1000
-  fuel: 10000
+  fuel: 0
+  maxFuel: 500
+  rotateSpeed: 0.5
 --- !u!212 &1473324785
 SpriteRenderer:
   m_ObjectHideFlags: 0
