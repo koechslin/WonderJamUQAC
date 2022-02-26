@@ -19,7 +19,7 @@ public class CheckStateOfPlayers : MonoBehaviour
     {
         p1Ready = false;
         p2Ready = false;
-        race = "TestSceneAlexis";
+        race = "KillianTestScene";
     }
 
     public void switchP1State()
