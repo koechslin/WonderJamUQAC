@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 460e94bfb2e23ed47b469012e4bb3faf
   - enabled: 1
-    path: Assets/Scenes/TestSceneAlexis.unity
-    guid: 817f8bf4a93572e4aa58173a571fe0a0
+    path: Assets/Scenes/KillianTestScene.unity
+    guid: 308df4434f127274e87fb8ee19fc1da7
   m_configObjects: {}
