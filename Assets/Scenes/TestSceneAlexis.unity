@@ -134,58 +134,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship
       objectReference: {fileID: 0}
-    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
-      propertyPath: fuel
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
-      propertyPath: maxFuel
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
-      propertyPath: rotateSpeed
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
-      propertyPath: flashColor.a
-      value: 0.49803922
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
-      propertyPath: flashColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
-      propertyPath: flashColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
-      propertyPath: flashColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
-      propertyPath: flashDuration
-      value: 0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
-      propertyPath: regularColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
-      propertyPath: regularColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
-      propertyPath: regularColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
-      propertyPath: regularColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
-      propertyPath: numberOfFlashes
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 5810677037346925278, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
       propertyPath: m_RootOrder
       value: 1
