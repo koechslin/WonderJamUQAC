@@ -28,6 +28,10 @@ public class Player : MonoBehaviour
     private bool isInvincible;
     private SpriteRenderer mySprite;
 
+    [Header("Particles settings")]
+    public Color defaultColor;
+    public Color boostColor;
+
     [HideInInspector]
     public float horizontalInput;
     [HideInInspector]
@@ -88,14 +92,19 @@ public class Player : MonoBehaviour
 
     private void AddForceToShip(bool useBoost)
     {
-        int boost = useBoost ? 2 : 1;
+        int boostFactor = useBoost ? 2 : 1;
+
+        rigidbody.AddRelativeForce(Vector3.up * movementSpeed * Time.deltaTime * boostFactor);
+        fuel -= regularFuelConsumption * boostFactor;
+
+        var emitParams = new ParticleSystem.EmitParams
+        {
+            startColor = defaultColor
+        };
+
+        if (useBoost) emitParams.startColor = boostColor;
         
-        rigidbody.AddRelativeForce(Vector3.up * movementSpeed * Time.deltaTime * boost);
-        fuel -= regularFuelConsumption * boost;
-        var emitParams = new ParticleSystem.EmitParams();
-        if (boost == 1) emitParams.startColor = Color.magenta;
-        else if (boost == 2) emitParams.startColor = Color.red;
-        particle.Emit(emitParams, boost);
+        particle.Emit(emitParams, boostFactor);
     }
 
     void TakeDamage()
