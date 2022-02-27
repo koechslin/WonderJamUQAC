@@ -135,7 +135,7 @@ public class GeneratePerk : MonoBehaviour
             m_playerPerks.DecreaseRegenFuel();
         }
 
-        gameManager.Respawn(m_playerTag);
+        gameManager.CheckPerksChoices(m_playerTag);
         m_perksMenu.SetActive(false);
     }
 }

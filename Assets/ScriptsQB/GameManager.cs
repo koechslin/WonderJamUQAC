@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        if (player1 == null && player2 == null) return;
+
         startPosP1 = player1.transform.position;
         startPosP2 = player2.transform.position;
     }
@@ -117,7 +119,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Respawn(string playerTag)
+    public void CheckPerksChoices(string playerTag)
     {
         switch (playerTag)
         {
@@ -134,10 +136,7 @@ public class GameManager : MonoBehaviour
         m_perksMenuP1.SetActive(false);
         m_perksMenuP2.SetActive(false);
 
-        player1.transform.position = startPosP1;
-        player2.transform.position = startPosP2;
-
-        player1.Respawn();
-        player2.Respawn();
+        player1.Respawn(startPosP1);
+        player2.Respawn(startPosP2);
     }
 }

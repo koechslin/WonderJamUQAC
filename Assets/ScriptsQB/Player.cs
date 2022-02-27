@@ -39,12 +39,17 @@ public class Player : MonoBehaviour
     public Color defaultColor;
     public Color boostColor;
 
+    [Header("Respawn settings")]
+    public float respawnDelay;
+
     [HideInInspector]
     public float horizontalInput;
     [HideInInspector]
     public float verticalInput;
     [HideInInspector]
     public bool isBoostActivated;
+    [HideInInspector]
+    public Transform lastCheckpoint;
 
     void Start()
     {
@@ -54,6 +59,7 @@ public class Player : MonoBehaviour
         mySprite = GetComponent<SpriteRenderer>();
         currentHP = maxHP;
         EngineAlreadyHeard = false;
+        lastCheckpoint = transform;
     }
 
     void Update()
@@ -74,7 +80,7 @@ public class Player : MonoBehaviour
             EngineAlreadyHeard = false;
         }
 
-            if (horizontalInput < - 0.01f) transform.Rotate(new Vector3(0, 0, rotateSpeed));
+        if (horizontalInput < - 0.01f) transform.Rotate(new Vector3(0, 0, rotateSpeed));
 
         else if (horizontalInput > 0.01f) transform.Rotate(new Vector3(0, 0, -rotateSpeed));
 
@@ -148,14 +154,18 @@ public class Player : MonoBehaviour
         m_collider.enabled = false;
         rigidbody.velocity = Vector3.zero;
         rigidbody.angularVelocity = 0f;
+        StartCoroutine(RespawnCoroutine());
     }
 
-    public void Respawn()
+    public void Respawn(Vector3 respawnPosition)
     {
+        currentHP = maxHP;
+        transform.position = respawnPosition;
         enabled = true;
         m_collider.enabled = true;
         rigidbody.velocity = Vector3.zero;
         rigidbody.angularVelocity = 0f;
+        m_animator.SetTrigger("Respawn");
     }
 
     private IEnumerator FlashCoroutine()
@@ -179,5 +189,11 @@ public class Player : MonoBehaviour
     {
         rigidbody.velocity = Vector2.zero;
         this.enabled = false;
+    }
+
+    private IEnumerator RespawnCoroutine()
+    {
+        yield return new WaitForSeconds(respawnDelay);
+        Respawn(lastCheckpoint.position);
     }
 }

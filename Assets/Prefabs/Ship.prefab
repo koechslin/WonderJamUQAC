@@ -4924,9 +4924,11 @@ MonoBehaviour:
   isInvincible: 0
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
   boostColor: {r: 0, g: 0, b: 0, a: 0}
+  respawnDelay: 1
   horizontalInput: 0
   verticalInput: 0
   isBoostActivated: 0
+  lastCheckpoint: {fileID: 0}
 --- !u!50 &5810677037346925251
 Rigidbody2D:
   serializedVersion: 4
