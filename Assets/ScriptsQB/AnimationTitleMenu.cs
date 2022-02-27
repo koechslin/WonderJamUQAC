@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,16 +7,18 @@ public class AnimationTitleMenu : MonoBehaviour
 {
     [SerializeField] private Text m_titleText;
     [SerializeField] private string m_title;
-    // Start is called before the first frame update
-    void Start()
+
+    private Coroutine titleCoroutine;
+
+    private void OnEnable()
     {
-        StartCoroutine(Write(m_title));
+        titleCoroutine = StartCoroutine(Write(m_title));
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        StopCoroutine(titleCoroutine);
+        AudioManager.instance.Stop("Typing");
     }
 
     IEnumerator Write(string sentence)
