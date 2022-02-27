@@ -160,6 +160,9 @@ public class GameManager : MonoBehaviour
         {
             spawnAsteroids.BeginSpawn();
         }
+
+        p1finishChoice = false;
+        p2finishChoice = false;
     }
 
     private IEnumerator EndGameScreenCoroutine()
