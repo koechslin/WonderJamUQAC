@@ -102,7 +102,8 @@ public class AsteroidsMovements : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("P1") || collision.gameObject.CompareTag("P2"))
         {
-            Player player = collision.GetComponent<Player>();           
+            Player player = collision.GetComponent<Player>();     
+            GameObject shipTouched = collision.gameObject;
             if (!player.isInvincible)
             {
                 if (!player.GetComponent<PlayerPerks>().m_asteroidDeviation)

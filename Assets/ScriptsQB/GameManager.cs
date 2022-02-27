@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -119,6 +120,8 @@ public class GameManager : MonoBehaviour
             finishTextP1.text = "You lose the race !";
             finishTextP1.gameObject.SetActive(true);
         }
+
+        StartCoroutine(EndGameScreenCoroutine());
     }
 
     public void CheckPerksChoices(string playerTag)
@@ -143,5 +146,11 @@ public class GameManager : MonoBehaviour
 
         player1.Respawn(startPosP1);
         player2.Respawn(startPosP2);
+    }
+
+    private IEnumerator EndGameScreenCoroutine()
+    {
+        yield return new WaitForSeconds(3);
+        endGameMenu.SetActive(true);
     }
 }
