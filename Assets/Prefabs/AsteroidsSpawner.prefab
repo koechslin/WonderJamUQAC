@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_asteroid: {fileID: 3586426668911275177, guid: db37678327879b94caa7b44a4c159346, type: 3}
-  m_time: 2
+  m_time: 10
   m_canSpawn: 1
 --- !u!58 &675372080301301154
 CircleCollider2D:

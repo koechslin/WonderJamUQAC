@@ -40,8 +40,8 @@ public class GeneratePerk : MonoBehaviour
     private int m_malusChoice = 0;
 
 
-    [SerializeField] private Text m_bonusText;
-    [SerializeField] private Text m_malusText;
+    public Text m_bonusText;
+    public Text m_malusText;
 
     private GameManager gameManager;
 
@@ -81,8 +81,12 @@ public class GeneratePerk : MonoBehaviour
         m_malus.Add(m_decreaseRegenFuel);
         m_malusDescritpion.Add(m_decreaseRegenFuelDescription);
 
-        m_bonusChoice = Random.Range(0, m_bonus.Count);
-        m_malusChoice = Random.Range(0, m_malus.Count);
+        while (m_bonusChoice == m_malusChoice)
+        {
+            m_bonusChoice = Random.Range(0, m_bonus.Count);
+            m_malusChoice = Random.Range(0, m_malus.Count);
+        }
+
         m_bonus[m_bonusChoice] = true;
         m_malus[m_malusChoice] = true;
     }
