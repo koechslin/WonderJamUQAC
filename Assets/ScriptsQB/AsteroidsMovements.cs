@@ -36,7 +36,6 @@ public class AsteroidsMovements : MonoBehaviour
         //FindNearestPlayer();
         int rand = Random.Range(0, 2);
         m_nearestPlayer = m_players[rand];
-        Debug.Log(m_nearestPlayer);
 
         // Initialize movements
         m_force = new Vector2((m_nearestPlayer.transform.position.x - transform.position.x) * m_speed, (m_nearestPlayer.transform.position.y - transform.position.y) * m_speed);
