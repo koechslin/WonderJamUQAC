@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor.Animations;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -56,6 +57,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        InitDataWithPlayerChoice();
+
         rigidbody = GetComponent<Rigidbody2D>();
         fuel = maxFuel;
         isInvincible = false;
@@ -63,6 +66,31 @@ public class Player : MonoBehaviour
         currentHP = maxHP;
         EngineAlreadyHeard = false;
         lastCheckpoint = transform.position;
+    }
+
+    private void InitDataWithPlayerChoice()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (CompareTag("P1"))
+        {
+            m_animator.runtimeAnimatorController = PlayersSpaceships.animatorP1.runtimeAnimatorController;
+            spriteRenderer.sprite = PlayersSpaceships.spriteP1;
+            maxHP = PlayersSpaceships.healthP1;
+            maxFuel = PlayersSpaceships.fuelP1;
+            movementSpeed = PlayersSpaceships.speedP1;
+            rotateSpeed = PlayersSpaceships.handlingP1;
+        }
+
+        else if (CompareTag("P2"))
+        {
+            m_animator.runtimeAnimatorController = PlayersSpaceships.animatorP2.runtimeAnimatorController;
+            spriteRenderer.sprite = PlayersSpaceships.spriteP2;
+            maxHP = PlayersSpaceships.healthP2;
+            maxFuel = PlayersSpaceships.fuelP2;
+            movementSpeed = PlayersSpaceships.speedP2;
+            rotateSpeed = PlayersSpaceships.handlingP2;
+        }
     }
 
     void FixedUpdate()
