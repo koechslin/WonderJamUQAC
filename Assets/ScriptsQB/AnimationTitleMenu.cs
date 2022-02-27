@@ -21,11 +21,13 @@ public class AnimationTitleMenu : MonoBehaviour
 
     IEnumerator Write(string sentence)
     {
+        AudioManager.instance.Play("Typing");
         m_titleText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
             m_titleText.text += letter;
             yield return new WaitForSeconds(0.1f);
         }
+        AudioManager.instance.Stop("Typing");
     }
 }
