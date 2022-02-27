@@ -14,6 +14,12 @@ public class CheckStateOfPlayers : MonoBehaviour
     public GameObject p1NotReadyButton;
     public GameObject p2NotReadyButton;
 
+    public Animator shipModel1;
+    public Animator shipModel2;
+
+    public Sprite spriteShip1;
+    public Sprite spriteShip2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +46,7 @@ public class CheckStateOfPlayers : MonoBehaviour
     {
         if (p1Ready && p2Ready)
         {
+            SendDataToPlayersSpaceships();
             SceneManager.LoadScene(race);
             FindObjectOfType<AudioManager>().Stop("Main Menu");
             FindObjectOfType<AudioManager>().Play("Space Race");
@@ -54,5 +61,41 @@ public class CheckStateOfPlayers : MonoBehaviour
         p1ReadyButton.SetActive(p1Ready);
         p2NotReadyButton.SetActive(!p2Ready);
         p2ReadyButton.SetActive(p2Ready);
+    }
+
+    private void SendDataToPlayersSpaceships()
+    {
+        ChangeShip changeShipScript = GetComponent<ChangeShip>();
+        if (changeShipScript.shipModelP1 == 0)
+        {
+            PlayersSpaceships.animatorP1 = shipModel1;
+            PlayersSpaceships.spriteP1 = spriteShip1;
+        }
+        else if (changeShipScript.shipModelP1 == 1)
+        {
+            PlayersSpaceships.animatorP1 = shipModel2;
+            PlayersSpaceships.spriteP1 = spriteShip2;
+            
+        }
+        PlayersSpaceships.healthP1 = 3;
+        PlayersSpaceships.fuelP1 = 1000;
+        PlayersSpaceships.speedP1 = changeShipScript.speedP1Value;
+        PlayersSpaceships.handlingP1 = changeShipScript.handlingP1Value;
+
+        if (changeShipScript.shipModelP2 == 0)
+        {
+            PlayersSpaceships.animatorP2 = shipModel1;
+            PlayersSpaceships.spriteP2 = spriteShip1;
+        }
+        else if (changeShipScript.shipModelP2 == 1)
+        {
+            PlayersSpaceships.animatorP2 = shipModel2;
+            PlayersSpaceships.spriteP2 = spriteShip2;
+
+        }
+        PlayersSpaceships.healthP2 = 3;
+        PlayersSpaceships.fuelP2 = 1000;
+        PlayersSpaceships.speedP2 = changeShipScript.speedP2Value;
+        PlayersSpaceships.handlingP2 = changeShipScript.handlingP2Value;
     }
 }
