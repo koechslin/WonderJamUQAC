@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -50,6 +51,8 @@ public class Player : MonoBehaviour
     public bool isBoostActivated;
     [HideInInspector]
     public Vector3 lastCheckpoint;
+    [HideInInspector]
+    public event Action onHealthChange;
 
     void Start()
     {
@@ -140,6 +143,7 @@ public class Player : MonoBehaviour
         currentHP--;
         m_animator.SetTrigger("OnHit");
         StartCoroutine(FlashCoroutine());
+        onHealthChange?.Invoke();
         if (currentHP == 0) 
         {
             Die();
@@ -160,6 +164,7 @@ public class Player : MonoBehaviour
     public void Respawn(Vector3 respawnPosition)
     {
         currentHP = maxHP;
+        onHealthChange?.Invoke();
         transform.position = respawnPosition;
         enabled = true;
         m_collider.enabled = true;
