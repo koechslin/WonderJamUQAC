@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         lastCheckpoint = transform.position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
 
         // Si on veut implémenter une limite : get la velocity du RigidBody puis normaliser le vecteur + multiplier par la vitesse max

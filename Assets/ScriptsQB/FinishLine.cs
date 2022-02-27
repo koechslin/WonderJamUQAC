@@ -13,8 +13,6 @@ public class FinishLine : MonoBehaviour
     [SerializeField]
     private Text finishText;
 
-    [Header("Game Manager")]
-    [SerializeField]
     private GameManager gameManager;
 
     private GameObject m_player1;
@@ -24,6 +22,7 @@ public class FinishLine : MonoBehaviour
     {
         m_player1 = GameObject.FindGameObjectWithTag("P1");
         m_player2 = GameObject.FindGameObjectWithTag("P2");
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
