@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject m_perksMenuP2;
     [SerializeField] private List<GeneratePerk> m_perks;
 
+    public GameObject endGameMenu;
+
     private int scoreP1;
     private int scoreP2;
     private Vector3 startPosP1;
@@ -135,6 +137,9 @@ public class GameManager : MonoBehaviour
 
         m_perksMenuP1.SetActive(false);
         m_perksMenuP2.SetActive(false);
+
+        player1.lastCheckpoint = startPosP1;
+        player2.lastCheckpoint = startPosP2;
 
         player1.Respawn(startPosP1);
         player2.Respawn(startPosP2);
