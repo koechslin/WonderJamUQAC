@@ -193,6 +193,7 @@ public class Player : MonoBehaviour
     {
         currentHP = maxHP;
         onHealthChange?.Invoke();
+        fuel = maxFuel;
         transform.position = respawnPosition;
         enabled = true;
         m_collider.enabled = true;
