@@ -732,7 +732,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Killian Oeschlin
+  m_text: Killian Oechslin
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7bfb948a2d6c3d546897b5078ec9b1c1, type: 2}
   m_sharedMaterial: {fileID: 4447569201631053679, guid: 7bfb948a2d6c3d546897b5078ec9b1c1, type: 2}
@@ -1701,7 +1701,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 685874439}
+      - m_Target: {fileID: 1290146909}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -2982,7 +2982,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 685874439}
+      - m_Target: {fileID: 176999708}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -4727,6 +4727,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb6fa8efc0e12947b7ecf781a02adcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nbRoundsToWin: 0
+  player1: {fileID: 0}
+  imagesScoreP1: []
+  finishTextP1: {fileID: 0}
+  player2: {fileID: 0}
+  imagesScoreP2: []
+  finishTextP2: {fileID: 0}
+  m_perksMenuP1: {fileID: 0}
+  m_perksMenuP2: {fileID: 0}
+  m_perks: []
 --- !u!4 &1415246663
 Transform:
   m_ObjectHideFlags: 0
