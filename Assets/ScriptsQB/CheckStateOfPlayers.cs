@@ -45,4 +45,14 @@ public class CheckStateOfPlayers : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Space Race");
         }
     }
+
+    public void resetButtons()
+    {
+        p1Ready = false;
+        p2Ready = false;
+        p1NotReadyButton.SetActive(!p1Ready);
+        p1ReadyButton.SetActive(p1Ready);
+        p2NotReadyButton.SetActive(!p2Ready);
+        p2ReadyButton.SetActive(p2Ready);
+    }
 }
