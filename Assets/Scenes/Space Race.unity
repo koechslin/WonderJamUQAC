@@ -19494,6 +19494,18 @@ PrefabInstance:
       propertyPath: numberOfFlashes
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
+      propertyPath: regularFuelConsumption
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
+      propertyPath: regularFuelReplenishment
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
+      propertyPath: fuelReplenishmentWhenEmpty
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5810677037346925278, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -53053,6 +53065,18 @@ PrefabInstance:
     - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
       propertyPath: numberOfFlashes
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
+      propertyPath: regularFuelConsumption
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
+      propertyPath: regularFuelReplenishment
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
+      propertyPath: fuelReplenishmentWhenEmpty
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5810677037346925278, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
       propertyPath: m_RootOrder
