@@ -2253,7 +2253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &685874440
 Transform:
   m_ObjectHideFlags: 0
@@ -3761,7 +3761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1022290455
 Transform:
   m_ObjectHideFlags: 0
@@ -5496,8 +5496,8 @@ MonoBehaviour:
   p2ReadyButton: {fileID: 235601541}
   p1NotReadyButton: {fileID: 1027595984}
   p2NotReadyButton: {fileID: 372526053}
-  shipModel1: {fileID: 21300000, guid: 4709ec9cfb81e8d4dac47d20be2eed19, type: 3}
-  shipModel2: {fileID: -3282610866405107179, guid: 9a29540fd04751043ac4ce55b1bcfcb6, type: 3}
+  shipModel1: {fileID: 743108816, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
+  shipModel2: {fileID: 7588967236044020268, guid: 3b8cf67aac1531948bb2f37a6716019f, type: 3}
 --- !u!114 &1415246665
 MonoBehaviour:
   m_ObjectHideFlags: 0

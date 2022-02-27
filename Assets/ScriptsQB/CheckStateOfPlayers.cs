@@ -14,8 +14,8 @@ public class CheckStateOfPlayers : MonoBehaviour
     public GameObject p1NotReadyButton;
     public GameObject p2NotReadyButton;
 
-    public Sprite shipModel1;
-    public Sprite shipModel2;
+    public Animator shipModel1;
+    public Animator shipModel2;
 
     // Start is called before the first frame update
     void Start()
@@ -65,11 +65,11 @@ public class CheckStateOfPlayers : MonoBehaviour
         ChangeShip changeShipScript = GetComponent<ChangeShip>();
         if (changeShipScript.shipModelP1 == 0)
         {
-            PlayersSpaceships.spriteP1 = shipModel1;
+            PlayersSpaceships.animatorP1 = shipModel1;
         }
         else if (changeShipScript.shipModelP1 == 1)
         {
-            PlayersSpaceships.spriteP1 = shipModel2;
+            PlayersSpaceships.animatorP1 = shipModel2;
             
         }
         PlayersSpaceships.healthP1 = 3;
@@ -79,11 +79,11 @@ public class CheckStateOfPlayers : MonoBehaviour
 
         if (changeShipScript.shipModelP2 == 0)
         {
-            PlayersSpaceships.spriteP2 = shipModel1;
+            PlayersSpaceships.animatorP2 = shipModel1;
         }
         else if (changeShipScript.shipModelP2 == 1)
         {
-            PlayersSpaceships.spriteP2 = shipModel2;
+            PlayersSpaceships.animatorP2 = shipModel2;
 
         }
         PlayersSpaceships.healthP2 = 3;
