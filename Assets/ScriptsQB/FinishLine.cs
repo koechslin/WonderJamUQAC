@@ -27,6 +27,12 @@ public class FinishLine : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        if (m_player1.GetComponent<Player>().engineAlreadyHeard)
+            FindObjectOfType<AudioManager>().Stop("Engine Noise");
+
+        if (m_player2.GetComponent<Player>().engineAlreadyHeard)
+            FindObjectOfType<AudioManager>().Stop("Engine Noise");
+
         if (col.CompareTag("P1"))
         {
             m_player1.GetComponent<Player>().StopPlayer();
