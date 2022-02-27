@@ -17,6 +17,6 @@ public class PlayersInputManager : MonoBehaviour
         // Player 2
         player2.horizontalInput = Input.GetAxis("P2_Horizontal");
         player2.verticalInput = Input.GetAxis("P2_Vertical");
-        player2.isBoostActivated = Input.GetKey(KeyCode.RightControl);
+        player2.isBoostActivated = Input.GetKey(KeyCode.Return);
     }
 }
