@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 2
-  m_forceValue: 100
+  m_forceValue: 50
   m_rigidbody: {fileID: 3586426668911275178}
   m_detectionDistance: 1
   m_timeBetweenTwoChange: 2
