@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public bool isBoostActivated;
     [HideInInspector]
-    public Transform lastCheckpoint;
+    public Vector3 lastCheckpoint;
 
     void Start()
     {
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
         mySprite = GetComponent<SpriteRenderer>();
         currentHP = maxHP;
         EngineAlreadyHeard = false;
-        lastCheckpoint = transform;
+        lastCheckpoint = transform.position;
     }
 
     void Update()
@@ -194,6 +194,6 @@ public class Player : MonoBehaviour
     private IEnumerator RespawnCoroutine()
     {
         yield return new WaitForSeconds(respawnDelay);
-        Respawn(lastCheckpoint.position);
+        Respawn(lastCheckpoint);
     }
 }

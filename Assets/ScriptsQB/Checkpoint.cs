@@ -11,6 +11,6 @@ public class Checkpoint : MonoBehaviour
 
         if (player == null) return;
 
-        player.lastCheckpoint = respawnPoint;
+        player.lastCheckpoint = respawnPoint.position;
     }
 }
