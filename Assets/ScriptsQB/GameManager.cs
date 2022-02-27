@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject m_perksMenuP2;
     [SerializeField] private List<GeneratePerk> m_perks;
 
+    public GameObject endGameMenu;
+
     private int scoreP1;
     private int scoreP2;
     private Vector3 startPosP1;
@@ -141,7 +143,5 @@ public class GameManager : MonoBehaviour
 
         player1.Respawn(startPosP1);
         player2.Respawn(startPosP2);
-
-        
     }
 }

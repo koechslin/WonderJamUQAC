@@ -19875,6 +19875,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
+      propertyPath: respawnDelay
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
       propertyPath: flashDuration
       value: 0.14
       objectReference: {fileID: 0}
@@ -51392,6 +51396,7 @@ MonoBehaviour:
   - {fileID: 129309655}
   - {fileID: 647425057}
   - {fileID: 647425056}
+  endGameMenu: {fileID: 0}
 --- !u!4 &1801687316
 Transform:
   m_ObjectHideFlags: 0
@@ -54251,6 +54256,10 @@ PrefabInstance:
     - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
       propertyPath: boostColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
+      propertyPath: respawnDelay
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5810677037346925276, guid: 1f88669276e9ade44a1c8ca57970def9, type: 3}
       propertyPath: flashDuration
