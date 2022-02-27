@@ -9,8 +9,12 @@ public class AsteroidsMovements : MonoBehaviour
     [SerializeField] private Rigidbody2D m_rigidbody;
     [SerializeField] private float m_detectionDistance;
     [SerializeField] private float m_timeBetweenTwoChange;
-    
-    private GameObject[] m_players;
+
+    [SerializeField] private string m_p1Tag = "P1";
+    [SerializeField] private string m_p2Tag = "P2";
+
+    //private GameObject[] m_players;
+    private List<GameObject> m_players = new List<GameObject>();
     private GameObject m_nearestPlayer;
     private float m_currentDistanceNearestPlayer;
     private Vector2 m_force;
@@ -24,10 +28,14 @@ public class AsteroidsMovements : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Get all players
-        m_players = GameObject.FindGameObjectsWithTag("Player");
+        GameObject p1 = GameObject.FindGameObjectWithTag(m_p1Tag);
+        GameObject p2 = GameObject.FindGameObjectWithTag(m_p2Tag);
+        m_players.Add(p1);
+        m_players.Add(p2);
 
-        FindNearestPlayer();
+        //FindNearestPlayer();
+        int rand = Random.Range(0, 2);
+        m_nearestPlayer = m_players[rand];
         Debug.Log(m_nearestPlayer);
 
         // Initialize movements
@@ -41,8 +49,10 @@ public class AsteroidsMovements : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FindNearestPlayer();
-        m_currentDistanceNearestPlayer = GetDistanceWith(m_nearestPlayer);
+        //FindNearestPlayer();
+        //m_currentDistanceNearestPlayer = GetDistanceWith(m_nearestPlayer);
+        int rand = Random.Range(0, 2);
+        m_nearestPlayer = m_players[rand];
 
         // Check if near to a player and his deviation perks
         if ((m_currentDistanceNearestPlayer < m_detectionDistance) && m_canChange)
@@ -89,7 +99,7 @@ public class AsteroidsMovements : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("P1") || collision.gameObject.CompareTag("P2"))
         {
             Player player = collision.GetComponent<Player>();           
             if (!player.isInvincible)
