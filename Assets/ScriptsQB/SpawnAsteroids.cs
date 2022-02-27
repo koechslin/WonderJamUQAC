@@ -8,6 +8,7 @@ public class SpawnAsteroids : MonoBehaviour
     [SerializeField] private float m_time;
 
     public bool m_canSpawn = true;
+    private Coroutine timeBetweenSpawnCoroutine;
 
     void Update()
     {
@@ -15,7 +16,7 @@ public class SpawnAsteroids : MonoBehaviour
         {
             m_canSpawn = false;
             Instantiate(m_asteroid, transform);
-            StartCoroutine(TimeBetweenTwoSpawn());
+            timeBetweenSpawnCoroutine = StartCoroutine(TimeBetweenTwoSpawn());
         }
     }
 
@@ -36,5 +37,16 @@ public class SpawnAsteroids : MonoBehaviour
                 player.TakeDamage();
             }
         }
+    }
+
+    public void StopSpawn()
+    {
+        StopCoroutine(timeBetweenSpawnCoroutine);
+        m_canSpawn = false;
+    }
+
+    public void BeginSpawn()
+    {
+        m_canSpawn = true;
     }
 }

@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject m_perksMenuP2;
     [SerializeField] private List<GeneratePerk> m_perks;
 
+    [Header("Spawn asteroids")]
+    [SerializeField]
+    private SpawnAsteroids[] spawnAsteroidsArray;
+
     public GameObject endGameMenu;
 
     private int scoreP1;
@@ -54,6 +58,11 @@ public class GameManager : MonoBehaviour
 
     public void FinishRound(int winnerNum)
     {
+        foreach (SpawnAsteroids spawnAsteroids in spawnAsteroidsArray)
+        {
+            spawnAsteroids.StopSpawn();
+        }
+
         if (winnerNum == 1)
         {
             scoreP1++;
@@ -146,6 +155,11 @@ public class GameManager : MonoBehaviour
 
         player1.Respawn(startPosP1);
         player2.Respawn(startPosP2);
+
+        foreach (SpawnAsteroids spawnAsteroids in spawnAsteroidsArray)
+        {
+            spawnAsteroids.BeginSpawn();
+        }
     }
 
     private IEnumerator EndGameScreenCoroutine()
