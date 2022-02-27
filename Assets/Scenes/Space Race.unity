@@ -14761,6 +14761,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 1723835764}
     m_Modifications:
     - target: {fileID: 7089104007646056529, guid: 90c368c6a050a3d47a953307c81e854d, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089104007646056529, guid: 90c368c6a050a3d47a953307c81e854d, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089104007646056529, guid: 90c368c6a050a3d47a953307c81e854d, type: 3}
       propertyPath: m_FontData.m_MaxSize
       value: 100
       objectReference: {fileID: 0}
@@ -15137,6 +15145,14 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7089104008322072425, guid: 90c368c6a050a3d47a953307c81e854d, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089104008322072425, guid: 90c368c6a050a3d47a953307c81e854d, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089104008322072425, guid: 90c368c6a050a3d47a953307c81e854d, type: 3}
       propertyPath: m_FontData.m_MaxSize
       value: 100
       objectReference: {fileID: 0}
@@ -15213,6 +15229,14 @@ PrefabInstance:
       value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 7089104008990211612, guid: 90c368c6a050a3d47a953307c81e854d, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089104008990211612, guid: 90c368c6a050a3d47a953307c81e854d, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089104008990211612, guid: 90c368c6a050a3d47a953307c81e854d, type: 3}
       propertyPath: m_FontData.m_MaxSize
       value: 300
       objectReference: {fileID: 0}
@@ -15271,6 +15295,14 @@ PrefabInstance:
     - target: {fileID: 7089104009194775456, guid: 90c368c6a050a3d47a953307c81e854d, type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089104009260930798, guid: 90c368c6a050a3d47a953307c81e854d, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089104009260930798, guid: 90c368c6a050a3d47a953307c81e854d, type: 3}
+      propertyPath: m_Color.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7089104009260930798, guid: 90c368c6a050a3d47a953307c81e854d, type: 3}
       propertyPath: m_FontData.m_MaxSize
