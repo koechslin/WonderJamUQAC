@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Space Race.unity
     guid: 4e8458f03654d5b48a60af9b03ffa7a2
+  - enabled: 1
+    path: Assets/Scenes/QuentinPerksTest.unity
+    guid: bc884cdbc37f1dc45aa5a4c632a8298d
   m_configObjects: {}
