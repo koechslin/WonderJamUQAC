@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: 66db26645fc5b3143926adc0bde3d4a1
+guid: 5d103feedc20c6b4c918f3a7f0c81c50
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -2262122895464096801
-    second: wasd_0
-  - first:
-      213: -7122173533431488337
-    second: wasd_1
-  - first:
-      213: 1471743797466021535
-    second: wasd_2
-  - first:
-      213: 7459822484115615111
-    second: wasd_3
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -53,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -77,7 +65,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -89,7 +77,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -101,91 +89,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: wasd_0
-      rect:
-        serializedVersion: 2
-        x: 211
-        y: 240
-        width: 190
-        height: 220
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fdb959936335b90e0800000000000000
-      internalID: -2262122895464096801
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wasd_1
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 0
-        width: 190
-        height: 220
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fa0a02ff7e4f82d90800000000000000
-      internalID: -7122173533431488337
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wasd_2
-      rect:
-        serializedVersion: 2
-        x: 211
-        y: 0
-        width: 190
-        height: 220
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f9eb858af2fac6410800000000000000
-      internalID: 1471743797466021535
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wasd_3
-      rect:
-        serializedVersion: 2
-        x: 421
-        y: 0
-        width: 190
-        height: 220
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 78dee25860d968760800000000000000
-      internalID: 7459822484115615111
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
