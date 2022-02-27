@@ -108,6 +108,12 @@ public class AsteroidsMovements : MonoBehaviour
             {
                 if (!player.GetComponent<PlayerPerks>().m_asteroidDeviation)
                 {
+                    Vector3 playerPosition = shipTouched.transform.position;
+                    Vector3 asteroidPosition = gameObject.transform.position;
+                    Vector3 reboundForce = playerPosition - asteroidPosition;
+                    shipTouched.GetComponent<Rigidbody2D>().AddRelativeForce(reboundForce * Time.deltaTime * 50, ForceMode2D.Impulse);
+
+                    FindObjectOfType<AudioManager>().Play("Crash");
                     player.TakeDamage();
                 }
                 
