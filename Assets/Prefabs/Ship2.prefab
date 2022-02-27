@@ -4906,15 +4906,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_collider: {fileID: 4637106392007076935}
   particle: {fileID: 1908888726}
-  regularFuelConsumption: 1
-  regularFuelReplenishment: 1.5
-  fuelReplenishmentWhenEmpty: 0.1
+  regularFuelConsumption: 3
+  regularFuelReplenishment: 7.5
+  fuelReplenishmentWhenEmpty: 0.5
   m_animator: {fileID: 0}
   m_playerPerks: {fileID: 776207437}
-  movementSpeed: 2
+  movementSpeed: 2.5
   fuel: 0
   maxFuel: 1000
-  rotateSpeed: 0.7
+  rotateSpeed: 3
   currentHP: 3
   maxHP: 3
   regularColor: {r: 1, g: 1, b: 1, a: 1}
