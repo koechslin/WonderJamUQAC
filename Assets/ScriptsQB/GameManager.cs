@@ -136,7 +136,12 @@ public class GameManager : MonoBehaviour
         m_perksMenuP1.SetActive(false);
         m_perksMenuP2.SetActive(false);
 
+        player1.lastCheckpoint = startPosP1;
+        player2.lastCheckpoint = startPosP2;
+
         player1.Respawn(startPosP1);
         player2.Respawn(startPosP2);
+
+        
     }
 }
