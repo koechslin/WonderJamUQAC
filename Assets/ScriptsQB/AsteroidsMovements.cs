@@ -49,6 +49,7 @@ public class AsteroidsMovements : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         //FindNearestPlayer();
         //m_currentDistanceNearestPlayer = GetDistanceWith(m_nearestPlayer);
         int rand = Random.Range(0, 2);
@@ -63,9 +64,9 @@ public class AsteroidsMovements : MonoBehaviour
                 m_velocity = m_rigidbody.velocity;
 
                 Vector2 newForce = Vector2.Reflect(m_velocity, transform.position.normalized) * m_forceValue;
-                m_rigidbody.AddForce(newForce);
+                m_rigidbody.AddForce(-m_force / 2);
             }
-        }
+        }*/
 
         // update the rotation
         transform.Rotate(m_rotate + new Vector3(0, 0, m_rotationValue));
@@ -104,7 +105,11 @@ public class AsteroidsMovements : MonoBehaviour
             Player player = collision.GetComponent<Player>();           
             if (!player.isInvincible)
             {
-                player.TakeDamage();
+                if (!player.GetComponent<PlayerPerks>().m_asteroidDeviation)
+                {
+                    player.TakeDamage();
+                }
+                
                 Destroy(gameObject);
             }
         }

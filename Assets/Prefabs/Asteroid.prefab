@@ -118,10 +118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7cc1e4376759334ab83cf48a7ff7362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 5
-  m_forceValue: 50
+  m_speed: 10
+  m_forceValue: 10
   m_rigidbody: {fileID: 3586426668911275178}
-  m_detectionDistance: 1
+  m_detectionDistance: 3
   m_timeBetweenTwoChange: 2
   m_p1Tag: P1
   m_p2Tag: P2

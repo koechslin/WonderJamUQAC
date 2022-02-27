@@ -15,7 +15,7 @@ public class GeneratePerk : MonoBehaviour
     private bool m_increaseHP = false;
     [SerializeField] private string m_increaseHPDescription = "HP up";
     private bool m_asteroidsDeviation = false;
-    [SerializeField] private string m_asteroidsDeviationDescription = "Asteroids Deviation";
+    [SerializeField] private string m_asteroidsDeviationDescription = "Asteroids Protection";
     private bool m_increaseSpeed = false;
     [SerializeField] private string m_increaseSpeedDescription = "Speed up";
     private bool m_increaseRegenFuel = false;
